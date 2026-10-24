@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wedding Invitation Website
 
-## Getting Started
+Premium interactive wedding invitation website with customizable themes and RSVP functionality.
 
-First, run the development server:
+Built with Next.js, TypeScript and Tailwind CSS. One polished template, driven entirely by a single config file per wedding.
+
+## Features
+
+- **Envelope opening** — animated cover with a wax seal and an "Open the Envelope" button.
+- **Music** — optional, starts only after that click; pause and mute controls.
+- **Hero & collage** — overlapping invitation card and editorial photo composition, botanical SVG ornaments.
+- **Countdown** — days/hours/minutes/seconds from the configured date and time, with an expired state.
+- **Wedding details** — ceremony and reception, Google Maps directions, Add to Google Calendar and `.ics` download.
+- **Story & gallery** — timeline, responsive gallery, keyboard-accessible lightbox (arrows, Esc, focus return).
+- **Guest info** — itinerary, accommodation, transport, dress code with palette, FAQ, contacts, gift note.
+- **RSVP** — validation shared by browser and API, guest limit, optional message, deadline, clear success/error states.
+- **Closing** — thank-you message and footer.
+- **Configurable** — every section can be hidden; theme colours and fonts come from config.
+- **Accessibility** — labelled form controls, `role="alert"` errors, focus styles, `prefers-reduced-motion` support.
+
+## Screenshots
+
+_Placeholders — add images to `docs/screenshots/` and link them here._
+
+| Envelope | Invitation | RSVP |
+| --- | --- | --- |
+| `docs/screenshots/envelope.png` | `docs/screenshots/invitation.png` | `docs/screenshots/rsvp.png` |
+
+## Tech stack
+
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4 · `next/font` (Great Vibes, Cormorant Garamond, Jost) · optional Supabase (REST) for RSVP storage.
+
+## Getting started
+
+Requires Node.js 20+.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000> (redirects to `/w/aiman-sarah`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm start` | Serve the production build |
+| `npm run lint` | ESLint |
+| `npm run typecheck` | TypeScript check |
+| `npm run assets` | Regenerate the demo placeholder photos and audio |
 
-## Learn More
+## Creating a new wedding
 
-To learn more about Next.js, take a look at the following resources:
+1. Copy `src/config/weddings/aiman-sarah.ts` to `src/config/weddings/<your-slug>.ts` and edit the values.
+2. Register it in `src/config/index.ts`.
+3. Visit `/w/<your-slug>`.
+4. Replace the placeholder images in `public/images` and the audio in `public/audio` (or edit the paths in the config). Remove `music` from the config to disable music.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Set a section to `false` in `sections` to hide it. The shape of the config is documented by `src/config/types.ts`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The demo content (names, venues, phone numbers) is fictional. The photographs are generated SVG placeholders and the audio is a synthesized pad loop, so there are no licensing concerns, but you should replace them.
 
-## Deploy on Vercel
+## RSVP storage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Without configuration the RSVP form runs in **demo mode**: input is validated, but **nothing is stored**, and the UI says so.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To persist responses with Supabase:
+
+1. Create a project and run `supabase/schema.sql` in the SQL editor (RLS is enabled with no public policies).
+2. Copy `.env.example` to `.env.local` and fill in:
+
+   ```bash
+   SUPABASE_URL=https://your-project-ref.supabase.co
+   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+   ```
+
+3. Set the same variables in your hosting provider. The service-role key is server-only; never expose it to the browser or commit it.
+
+Known limits: the API's rate limit is per server instance and best-effort; use a shared limiter (e.g. Upstash) for production. There is no admin view yet — read responses in the Supabase dashboard.
+
+## Build and deploy
+
+```bash
+npm run build
+npm start
+```
+
+Deploys to Vercel (import the repo, add the two environment variables) or any Node host. Add a custom domain in your hosting provider's settings.
+
+## Testing notes
+
+Verified in a browser against the running app: envelope open, music start/pause/mute, countdown values, RSVP validation (client and API), guest limit, demo-mode message, lightbox navigation, and link targets. There is no automated test suite yet.
+
+## Repository
+
+<https://github.com/muazramzii/wedding-invitation-website>
