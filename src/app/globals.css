@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --c-blush: #f6dfdc;
-  --c-rose: #c98f8f;
-  --c-ivory: #fbf6ee;
-  --c-gold: #b8934e;
-  --c-ink: #4a3a3a;
-  --f-script: var(--font-great-vibes);
+  --c-blush: #f6e4ec;
+  --c-rose: #b48597;
+  --c-ivory: #fbf1f5;
+  --c-gold: #c2a15f;
+  --c-ink: #7a5f6c;
+  --f-script: var(--font-pinyon-script);
   --f-serif: var(--font-cormorant-garamond);
 }
 
@@ -17,6 +17,7 @@
   --color-gold: var(--c-gold);
   --color-ink: var(--c-ink);
   --font-script: var(--f-script), cursive;
+  --font-accent: var(--font-italianno), cursive;
   --font-serif: var(--f-serif), Georgia, serif;
   --font-sans: var(--font-jost), system-ui, sans-serif;
 }
@@ -26,15 +27,51 @@ html {
 }
 
 body {
-  background: var(--c-ivory);
+  background: radial-gradient(120% 80% at 50% 0%, #fbeef4 0%, var(--c-blush) 55%, #efd9e6 100%) fixed;
   color: var(--c-ink);
   font-family: var(--font-jost), system-ui, sans-serif;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
 }
 
 :focus-visible {
   outline: 2px solid var(--c-gold);
   outline-offset: 3px;
+}
+
+@layer components {
+/* Small spaced capitals used for all supporting copy in the reference */
+.caps {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.68rem;
+  line-height: 1.9;
+}
+
+/* Frosted paper card with a soft embossed edge */
+.paper {
+  position: relative;
+  background: linear-gradient(160deg, rgba(255, 249, 252, 0.92), rgba(247, 232, 240, 0.9));
+  box-shadow:
+    0 14px 30px -14px rgba(140, 95, 120, 0.4),
+    0 2px 6px -2px rgba(140, 95, 120, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+.paper::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(180, 133, 151, 0.22);
+  border-radius: inherit;
+  pointer-events: none;
+}
+.shape-arch {
+  border-radius: 9999px 9999px 0.4rem 0.4rem;
+}
+.shape-oval {
+  border-radius: 50%;
+}
+
 }
 
 /* Scroll reveal */
@@ -70,10 +107,19 @@ body {
 
 @keyframes drift {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(2deg); }
+  50% { transform: translateY(-6px) rotate(1.5deg); }
 }
 .drift {
   animation: drift 7s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+.sway {
+  transform-origin: top center;
+  animation: sway 5s ease-in-out infinite;
 }
 
 @keyframes fade-up {
@@ -87,6 +133,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .drift, .fade-up { animation: none; }
+  .drift, .fade-up, .sway { animation: none; }
   .env-flap, .env-card { transition-duration: 0.01s; transition-delay: 0s; }
 }

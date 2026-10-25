@@ -1,19 +1,22 @@
 import type { WeddingConfig } from "@/config/types";
 import { formatLongDate } from "@/lib/utils";
-import { Sprig } from "../ui/Floral";
+import { Bouquet, Ribbon } from "../ui/Floral";
 import { Reveal } from "../ui/Reveal";
 
 export function Closing({ wedding }: { wedding: WeddingConfig }) {
   return (
-    <footer className="relative overflow-hidden bg-blush px-5 pb-16 pt-24 text-center">
-      <Sprig className="pointer-events-none absolute -left-8 bottom-0 h-56 w-40 opacity-70 md:h-72 md:w-56" />
-      <Sprig flip className="pointer-events-none absolute -right-8 bottom-0 h-56 w-40 opacity-70 md:h-72 md:w-56" />
-      <Reveal className="relative mx-auto max-w-xl">
-        <p className="font-serif text-2xl italic">{wedding.closing.message}</p>
-        <p className="mt-8 font-script text-6xl text-ink md:text-7xl">
-          {wedding.couple.first} <span className="text-gold">&amp;</span> {wedding.couple.second}
+    <footer className="relative mx-auto max-w-[460px] overflow-hidden px-4 pb-24 pt-20 text-center">
+      <Ribbon className="pointer-events-none absolute -left-6 top-6 w-64 rotate-[-8deg] opacity-80" />
+      <Bouquet className="pointer-events-none absolute -left-6 bottom-0 w-40" rotate={-6} />
+      <Bouquet className="pointer-events-none absolute -right-6 bottom-0 w-40" flip rotate={6} />
+      <Reveal className="relative">
+        <p className="caps mx-auto max-w-xs text-ink">{wedding.closing.message}</p>
+        <p className="mt-8 font-script text-6xl leading-[0.95] text-ink">
+          {wedding.couple.first}
+          <span className="block font-accent text-[0.55em] leading-none text-rose">and</span>
+          {wedding.couple.second}
         </p>
-        <p className="mt-2 text-xs uppercase tracking-[0.35em] text-rose">{formatLongDate(wedding.date)}</p>
+        <p className="caps mt-4 !tracking-[0.35em] text-rose">{formatLongDate(wedding.date)}</p>
       </Reveal>
     </footer>
   );
