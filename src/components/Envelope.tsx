@@ -26,7 +26,7 @@ export function Envelope({ wedding, onOpen }: { wedding: WeddingConfig; onOpen: 
       className={`fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden px-6 transition-opacity duration-1000 ${
         leaving ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
-      style={{ background: "radial-gradient(120% 80% at 50% 0%, #fbeef4 0%, var(--c-blush) 60%, #efd9e6 100%)" }}
+      style={{ background: "radial-gradient(120% 80% at 50% 0%, #ffffff 0%, var(--c-blush) 60%, #efe9e4 100%)" }}
     >
       <p className="fade-up caps mb-[1.5vh] text-center text-ink">{intro.eyebrow}</p>
 
@@ -41,17 +41,17 @@ export function Envelope({ wedding, onOpen }: { wedding: WeddingConfig; onOpen: 
         className={`envelope-scene relative mt-[4vh] ${opened ? "opened" : ""}`}
       >
         <div className="relative aspect-[4/3] w-full">
-          <div className="absolute inset-0 rounded-[3px] bg-[#e9d3dc] shadow-[0_18px_30px_-14px_rgba(120,80,100,0.5)]" />
+          <div className="absolute inset-0 rounded-[3px] bg-[#e6dfd9] shadow-[0_18px_30px_-14px_rgba(60,50,45,0.45)]" />
           <div className="env-card paper absolute inset-x-4 top-3 bottom-3 flex flex-col items-center justify-center text-center">
             <span className="font-script text-3xl text-ink">{couple.first} &amp; {couple.second}</span>
             <span className="caps mt-1 !text-[0.55rem] text-rose">{formatLongDate(wedding.date)}</span>
           </div>
           <div
-            className="absolute inset-0 rounded-[3px] bg-[#f3e3ea]"
+            className="absolute inset-0 rounded-[3px] bg-[#f4efeb]"
             style={{ clipPath: "polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%)" }}
           />
           <div
-            className="env-flap absolute inset-x-0 top-0 h-[55%] bg-[#ecd8e1]"
+            className="env-flap absolute inset-x-0 top-0 h-[55%] bg-[#ebe4de]"
             style={{ clipPath: "polygon(0 0, 100% 0, 50% 100%)", zIndex: opened ? 0 : 5 }}
           />
           {!opened && (

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef0e6"/><stop offset="1" stop-color="#cdd6bd"/></linearGradient>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef0e6"/><stop offset="1" stop-color="#d3dac3"/></linearGradient>
 <filter id="b"><feGaussianBlur stdDeviation="67"/></filter></defs>
-<rect width="800" height="600" fill="url(#g)"/><g filter="url(#b)"><circle cx="255" cy="599" r="205" fill="#eef0e6" opacity="0.55"/><circle cx="777" cy="318" r="291" fill="#cdd6bd" opacity="0.55"/><circle cx="521" cy="0" r="437" fill="#8a9a7b" opacity="0.55"/><circle cx="15" cy="300" r="342" fill="#eef0e6" opacity="0.55"/><circle cx="302" cy="600" r="201" fill="#cdd6bd" opacity="0.55"/></g>
+<rect width="800" height="600" fill="url(#g)"/><g filter="url(#b)"><circle cx="255" cy="599" r="205" fill="#eef0e6" opacity="0.55"/><circle cx="777" cy="318" r="291" fill="#d3dac3" opacity="0.55"/><circle cx="521" cy="0" r="437" fill="#8a9a7b" opacity="0.55"/><circle cx="15" cy="300" r="342" fill="#eef0e6" opacity="0.55"/><circle cx="302" cy="600" r="201" fill="#d3dac3" opacity="0.55"/></g>
 <path d="M400 552 C 280 420, 280 270, 400 192 C 520 270, 520 420, 400 552 Z" fill="#8a9a7b" opacity="0.18"/>
 <circle cx="400" cy="156" r="72" fill="#8a9a7b" opacity="0.2"/>
 </svg>

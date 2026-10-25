@@ -19,7 +19,7 @@ export function Polaroid({
 }) {
   return (
     <div
-      className={`bg-[#fffafc] p-[6%] pb-[16%] shadow-[0_10px_22px_-8px_rgba(110,70,90,0.5)] ${className}`}
+      className={`bg-[#fffafc] p-[6%] pb-[16%] shadow-[0_10px_22px_-8px_rgba(60,50,45,0.4)] ${className}`}
       style={{ transform: `rotate(${tilt}deg)` }}
     >
       <div className="relative aspect-square w-full overflow-hidden bg-blush">

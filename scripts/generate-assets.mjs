@@ -6,12 +6,12 @@ mkdirSync("public/images", { recursive: true });
 mkdirSync("public/audio", { recursive: true });
 
 const palettes = [
-  ["#f6dfdc", "#e5b9b4", "#c98f8f"],
-  ["#f3e6d3", "#e1c9a5", "#b8934e"],
-  ["#e8ddd3", "#d3b8aa", "#a97c7c"],
-  ["#f8e6e0", "#efc9c0", "#d59c97"],
-  ["#eef0e6", "#cdd6bd", "#8a9a7b"],
-  ["#f4e4dc", "#e3b9a8", "#bf8574"],
+  ["#f4eee8", "#e3d6c9", "#b9a48f"],
+  ["#f3e9d8", "#e1cfae", "#b8934e"],
+  ["#ece6df", "#d4c6b8", "#9c8a82"],
+  ["#f6f0ea", "#e6d8cc", "#c0a58f"],
+  ["#eef0e6", "#d3dac3", "#8a9a7b"],
+  ["#f2ebe4", "#ddcbb9", "#a98f7a"],
 ];
 
 function photo(name, w, h, p, seed) {
