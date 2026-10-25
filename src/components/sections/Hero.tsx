@@ -35,8 +35,8 @@ export function Hero({ wedding }: { wedding: WeddingConfig }) {
 
           {/* arch invitation card */}
           <div
-            className="paper shape-arch absolute left-[13%] top-[19%] flex w-[56%] flex-col items-center justify-end px-[4%] pb-[6%] text-center"
-            style={{ aspectRatio: "56 / 74" }}
+            className="paper shape-arch absolute left-[11%] top-[19%] z-10 flex w-[60%] flex-col items-center justify-end px-[6%] pb-[7%] text-center"
+            style={{ aspectRatio: "60 / 82" }}
           >
             <p className="caps text-ink" style={{ fontSize: "2.3cqw" }}>The wedding of</p>
             <p className="font-script leading-[0.95] text-ink" style={{ fontSize: "9.5cqw" }}>
@@ -46,21 +46,20 @@ export function Hero({ wedding }: { wedding: WeddingConfig }) {
             </p>
             <p className="caps mt-[4%] text-ink" style={{ fontSize: "2.4cqw" }}>{formatLongDate(wedding.date).split(", ")[1]}</p>
             <p className="caps text-ink" style={{ fontSize: "2.2cqw" }}>at {ceremony.time}</p>
-            <p className="caps mt-[3%] text-ink" style={{ fontSize: "2cqw", lineHeight: 1.7 }}>
-              {ceremony.venue.name}
-            </p>
+            <p className="caps mt-[3%] text-ink" style={{ fontSize: "2cqw", lineHeight: 1.6 }}>{ceremony.venue.name}</p>
+            <p className="caps text-ink/80" style={{ fontSize: "1.7cqw", lineHeight: 1.6, letterSpacing: "0.14em" }}>{ceremony.venue.address}</p>
           </div>
 
           <Polaroid image={p2} tilt={6} className="absolute left-[63%] top-[28%] w-[31%]" sizes="30vw" />
           <Polaroid image={p3} tilt={-5} className="absolute left-[57%] top-[48%] w-[33%]" sizes="30vw" />
 
-          <Ribbon className="pointer-events-none absolute left-[14%] top-[57%] w-[72%] rotate-[8deg] opacity-90" />
+          <Ribbon className="pointer-events-none absolute left-[14%] top-[60%] w-[72%] rotate-[8deg] opacity-90" />
 
           {/* second oval tag */}
-          <div className="paper shape-oval absolute left-[24%] top-[66%] flex w-[36%] items-center justify-center px-[4%] text-center" style={{ aspectRatio: "4 / 5" }}>
+          <div className="paper shape-oval absolute left-[24%] top-[69%] flex w-[36%] items-center justify-center px-[4%] text-center" style={{ aspectRatio: "4 / 5" }}>
             <p className="caps text-ink" style={{ fontSize: "2.6cqw" }}>{invitation.joinLine}</p>
           </div>
-          <Tassel className="absolute left-[40.5%] top-[92.5%] w-[4.5%]" />
+          <Tassel className="absolute left-[40.5%] top-[95.5%] w-[4.5%]" />
 
           <Bouquet className="pointer-events-none absolute -left-[5%] top-[14%] w-[32%]" rotate={-8} />
           <Bouquet className="pointer-events-none absolute -left-[4%] top-[72%] w-[30%]" flip rotate={6} />
