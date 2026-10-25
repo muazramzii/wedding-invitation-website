@@ -47,7 +47,7 @@ export interface WeddingConfig {
     fonts: { script: "Great Vibes" | "Pinyon Script" | "Allura"; serif: "Cormorant Garamond" | "Playfair Display" };
   };
   intro: { eyebrow: string; buttonLabel: string };
-  invitation: { eyebrow: string; message: string; hosts: string };
+  invitation: { eyebrow: string; message: string; hosts: string; tagline: string; joinLine: string };
   images: {
     hero: GalleryImage;
     collage: GalleryImage[];

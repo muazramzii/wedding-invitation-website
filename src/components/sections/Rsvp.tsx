@@ -4,6 +4,7 @@ import { useState, useSyncExternalStore } from "react";
 import type { WeddingConfig } from "@/config/types";
 import { validateRsvp, type RsvpErrors } from "@/lib/rsvp";
 import { SectionHeading } from "../ui/SectionHeading";
+import { Bouquet, WaxSeal } from "../ui/Floral";
 import { Reveal } from "../ui/Reveal";
 
 type Status =
@@ -14,7 +15,7 @@ type Status =
   | { kind: "error"; message: string };
 
 const field =
-  "w-full border border-gold/40 bg-ivory px-4 py-3 text-ink placeholder:text-ink/40 focus:border-gold";
+  "w-full border-b border-rose/50 bg-transparent px-1 py-2 text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none";
 
 export function Rsvp({ wedding }: { wedding: WeddingConfig }) {
   const { maxGuestsPerRsvp: max, allowMessage, deadline } = wedding.rsvp;
@@ -70,18 +71,20 @@ export function Rsvp({ wedding }: { wedding: WeddingConfig }) {
     ) : null;
 
   return (
-    <section id="rsvp" className="px-5 py-20 md:py-28">
-      <SectionHeading eyebrow="Kindly reply by" title="RSVP" />
-      <Reveal className="mx-auto max-w-xl">
-        <div className="bg-ivory p-6 shadow-[0_20px_50px_-20px_rgba(74,58,58,0.35)] ring-1 ring-gold/40 md:p-10">
+    <section id="rsvp" className="relative mx-auto max-w-[460px] px-4 py-14">
+      <Bouquet className="pointer-events-none absolute -left-8 top-0 z-10 w-32" rotate={-12} />
+      <SectionHeading caps="Kindly" script="RSVP" className="mb-8" />
+      <Reveal className="relative">
+        <WaxSeal className="absolute -top-5 right-4 z-10 w-14 rotate-6" />
+        <div className="paper mx-auto w-[94%] p-6 pt-8">
           {status.kind === "saved" || status.kind === "demo" ? (
             <div className="py-6 text-center" role="status">
-              <p className="font-script text-4xl text-rose">Thank you, {name.trim().split(" ")[0]}!</p>
+              <p className="font-accent text-5xl text-rose">Thank you, {name.trim().split(" ")[0]}!</p>
               <p className="mt-3 font-serif text-xl">
                 {attendance === "yes" ? "We can’t wait to celebrate with you." : "We’ll miss you and are grateful you let us know."}
               </p>
               {status.kind === "demo" && (
-                <p className="mx-auto mt-5 max-w-sm border border-gold/50 bg-blush/50 p-3 text-sm">
+                <p className="mx-auto mt-5 max-w-sm border border-gold/50 bg-blush/60 p-3 text-sm">
                   <strong>Demo mode:</strong> this response was validated but <em>not stored</em>. Configure the RSVP backend to save replies (see README).
                 </p>
               )}
@@ -91,16 +94,16 @@ export function Rsvp({ wedding }: { wedding: WeddingConfig }) {
           ) : (
             <form onSubmit={onSubmit} noValidate className="space-y-5">
               <div>
-                <label htmlFor="name" className="mb-1 block text-xs uppercase tracking-[0.2em]">Full name</label>
+                <label htmlFor="name" className="caps mb-1 block !text-[0.6rem] text-ink">Full name</label>
                 <input id="name" name="name" autoComplete="name" className={field} value={name} onChange={(e) => setName(e.target.value)} aria-invalid={!!errors.name} aria-describedby={errors.name ? "name-error" : undefined} />
                 {err("name")}
               </div>
 
               <fieldset>
-                <legend className="mb-2 text-xs uppercase tracking-[0.2em]">Will you attend?</legend>
+                <legend className="caps mb-2 !text-[0.6rem] text-ink">Will you attend?</legend>
                 <div className="grid grid-cols-2 gap-3">
                   {([["yes", "Joyfully accepts"], ["no", "Regretfully declines"]] as const).map(([v, label]) => (
-                    <label key={v} className={`cursor-pointer border px-3 py-3 text-center text-sm transition has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-gold ${attendance === v ? "border-rose bg-rose text-ivory" : "border-gold/40 hover:bg-blush/60"}`}>
+                    <label key={v} className={`caps cursor-pointer rounded-full border px-3 py-2.5 text-center !text-[0.6rem] transition has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-gold ${attendance === v ? "border-rose bg-rose text-ivory" : "border-rose/40 hover:bg-blush"}`}>
                       <input type="radio" name="attendance" value={v} checked={attendance === v} onChange={() => setAttendance(v)} className="sr-only" />
                       {label}
                     </label>
@@ -111,7 +114,7 @@ export function Rsvp({ wedding }: { wedding: WeddingConfig }) {
 
               {attendance === "yes" && (
                 <div>
-                  <label htmlFor="guests" className="mb-1 block text-xs uppercase tracking-[0.2em]">Number of guests (max {max})</label>
+                  <label htmlFor="guests" className="caps mb-1 block !text-[0.6rem] text-ink">Number of guests (max {max})</label>
                   <input id="guests" name="guests" type="number" min={1} max={max} inputMode="numeric" className={field} value={guests} onChange={(e) => setGuests(Number(e.target.value))} aria-invalid={!!errors.guests} aria-describedby={errors.guests ? "guests-error" : undefined} />
                   {err("guests")}
                 </div>
@@ -119,7 +122,7 @@ export function Rsvp({ wedding }: { wedding: WeddingConfig }) {
 
               {allowMessage && (
                 <div>
-                  <label htmlFor="message" className="mb-1 block text-xs uppercase tracking-[0.2em]">Wishes for the couple (optional)</label>
+                  <label htmlFor="message" className="caps mb-1 block !text-[0.6rem] text-ink">Wishes for the couple (optional)</label>
                   <textarea id="message" name="message" rows={3} maxLength={500} className={field} value={message} onChange={(e) => setMessage(e.target.value)} aria-describedby={errors.message ? "message-error" : undefined} />
                   {err("message")}
                 </div>
@@ -129,7 +132,7 @@ export function Rsvp({ wedding }: { wedding: WeddingConfig }) {
                 <p className="border border-[#a33a3a]/50 bg-[#a33a3a]/5 p-3 text-sm text-[#a33a3a]" role="alert">{status.message}</p>
               )}
 
-              <button type="submit" disabled={status.kind === "submitting"} className="w-full rounded-full bg-rose px-6 py-3.5 text-xs uppercase tracking-[0.3em] text-ivory transition hover:bg-ink disabled:opacity-60">
+              <button type="submit" disabled={status.kind === "submitting"} className="caps w-full rounded-full bg-rose px-6 py-3 !tracking-[0.3em] text-ivory transition hover:bg-ink disabled:opacity-60">
                 {status.kind === "submitting" ? "Sending…" : "Send RSVP"}
               </button>
             </form>

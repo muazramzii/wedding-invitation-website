@@ -1,97 +1,110 @@
 import type { WeddingConfig } from "@/config/types";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../ui/Reveal";
+import { Bouquet, Ribbon, Tassel, WaxSeal } from "../ui/Floral";
 
-function Block({ title, children, delay = 0 }: { title: string; children: React.ReactNode; delay?: number }) {
+/** Arch itinerary card followed by the round accommodation / transport / dress-code card. */
+export function Timeline({ wedding }: { wedding: WeddingConfig }) {
+  const g = wedding.guestInfo;
   return (
-    <Reveal delay={delay}>
-      <div className="h-full bg-ivory p-7 ring-1 ring-gold/40">
-        <h3 className="mb-4 font-script text-3xl text-rose">{title}</h3>
-        {children}
-      </div>
-    </Reveal>
+    <section id="guest-info" className="relative mx-auto max-w-[460px] px-4 py-14">
+      <Ribbon className="pointer-events-none absolute -left-10 top-4 w-60 rotate-[-10deg]" />
+      <Reveal>
+        <div className="paper shape-arch relative mx-auto w-[82%] px-8 pb-12 pt-[26%] text-center">
+          <Bouquet className="pointer-events-none absolute -right-10 top-[8%] z-10 w-32" rotate={10} />
+          <SectionHeading caps="Wedding" script="timeline" className="mb-6" />
+          <ul className="space-y-4">
+            {g.itinerary.map((it) => (
+              <li key={it.time}>
+                <p className="caps !leading-tight text-ink">{it.time}</p>
+                <p className="font-accent text-2xl leading-none text-rose">{it.label}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Reveal>
+
+      <Reveal className="relative -mt-4">
+        <WaxSeal className="absolute -top-6 right-6 z-10 w-14 rotate-6" />
+        <div className="paper shape-oval mx-auto w-[96%] px-[15%] py-[24%] text-center">
+          <h3 className="caps !tracking-[0.3em] text-ink">Accommodations</h3>
+          <ul className="mt-1 space-y-1">
+            {g.accommodation.map((a) => (
+              <li key={a.name} className="caps !text-[0.58rem] !leading-snug text-ink/90">
+                {a.link ? (
+                  <a href={a.link} target="_blank" rel="noopener noreferrer" className="underline decoration-gold underline-offset-4">
+                    {a.name}
+                  </a>
+                ) : (
+                  a.name
+                )}
+                {" — "}
+                {a.note}
+              </li>
+            ))}
+          </ul>
+          <h3 className="caps mt-5 !tracking-[0.3em] text-ink">Transportation</h3>
+          <p className="caps !text-[0.58rem] !leading-snug text-ink/90">{g.transportation}</p>
+          <h3 className="caps mt-5 !tracking-[0.3em] text-ink">Dress code</h3>
+          <p className="caps !text-[0.58rem] !leading-snug text-ink/90">
+            {g.dressCode.title}. {g.dressCode.text}
+          </p>
+          <ul className="mt-3 flex justify-center gap-2" aria-label="Suggested colour palette">
+            {g.dressCode.palette.map((c) => (
+              <li key={c} className="h-6 w-6 rounded-full ring-1 ring-white" style={{ background: c }} title={c} />
+            ))}
+          </ul>
+        </div>
+      </Reveal>
+    </section>
   );
 }
 
-export function GuestInfo({ wedding }: { wedding: WeddingConfig }) {
+/** FAQ, contacts and gift note. */
+export function GuestExtras({ wedding }: { wedding: WeddingConfig }) {
   const g = wedding.guestInfo;
   return (
-    <section id="guest-info" className="bg-blush/40 px-5 py-20 md:py-28">
-      <SectionHeading eyebrow="Good to know" title="Guest Information" />
-      <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
-        <Block title="Itinerary">
-          <ul className="space-y-2">
-            {g.itinerary.map((it) => (
-              <li key={it.time} className="flex gap-4">
-                <span className="w-20 shrink-0 text-sm uppercase tracking-wider text-gold">{it.time}</span>
-                <span>{it.label}</span>
-              </li>
-            ))}
-          </ul>
-        </Block>
-
-        <Block title="Dress Code" delay={100}>
-          <p className="font-serif text-xl">{g.dressCode.title}</p>
-          <p className="mt-1 text-ink/80">{g.dressCode.text}</p>
-          <ul className="mt-4 flex gap-2" aria-label="Suggested colour palette">
-            {g.dressCode.palette.map((c) => (
-              <li key={c} className="h-9 w-9 rounded-full ring-1 ring-gold/40" style={{ background: c }} title={c} />
-            ))}
-          </ul>
-        </Block>
-
-        <Block title="Stay & Travel">
-          <ul className="space-y-3">
-            {g.accommodation.map((a) => (
-              <li key={a.name}>
-                <p className="font-serif text-lg">
-                  {a.link ? (
-                    <a href={a.link} target="_blank" rel="noopener noreferrer" className="underline decoration-gold underline-offset-4 hover:text-rose">
-                      {a.name}
-                    </a>
-                  ) : (
-                    a.name
-                  )}
-                </p>
-                <p className="text-sm text-ink/80">{a.note}</p>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4 border-t border-gold/30 pt-4 text-sm">{g.transportation}</p>
-        </Block>
-
-        <Block title="Contact" delay={100}>
-          <ul className="space-y-3">
-            {g.contacts.map((c) => (
-              <li key={c.name} className="flex items-baseline justify-between gap-3">
-                <span>
-                  <span className="font-serif text-lg">{c.name}</span>
-                  <span className="ml-2 text-sm text-ink/70">{c.role}</span>
-                </span>
-                <a href={`tel:${c.phone.replace(/[^+\d]/g, "")}`} className="text-sm text-rose underline underline-offset-4">
-                  {c.phone}
-                </a>
-              </li>
-            ))}
-          </ul>
-          {g.gifts && <p className="mt-4 border-t border-gold/30 pt-4 text-sm italic">{g.gifts.text}</p>}
-        </Block>
-      </div>
-
-      <Reveal className="mx-auto mt-10 max-w-3xl">
-        <h3 className="mb-4 text-center font-script text-4xl text-rose">Questions & Answers</h3>
-        <div className="divide-y divide-gold/30 bg-ivory ring-1 ring-gold/40">
+    <section id="faq" className="relative mx-auto max-w-[460px] px-4 py-14">
+      <Reveal>
+        <SectionHeading caps="Questions &" script="answers" className="mb-6" />
+        <div className="paper divide-y divide-rose/20 px-5 py-2">
           {g.faqs.map((f) => (
-            <details key={f.q} className="group p-5">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-serif text-lg">
+            <details key={f.q} className="group py-3">
+              <summary className="caps flex cursor-pointer list-none items-center justify-between gap-4 !tracking-[0.18em] text-ink">
                 {f.q}
                 <span className="text-gold transition group-open:rotate-45" aria-hidden="true">+</span>
               </summary>
-              <p className="mt-2 text-ink/80">{f.a}</p>
+              <p className="mt-2 font-serif text-base italic leading-snug text-ink">{f.a}</p>
             </details>
           ))}
         </div>
       </Reveal>
+
+      <Reveal className="mt-12">
+        <SectionHeading caps="Get in" script="touch" className="mb-6" />
+        <ul className="space-y-3 text-center">
+          {g.contacts.map((c) => (
+            <li key={c.name}>
+              <p className="font-accent text-3xl leading-none text-rose">{c.name}</p>
+              <p className="caps !text-[0.6rem] text-ink">{c.role}</p>
+              <a href={`tel:${c.phone.replace(/[^+\d]/g, "")}`} className="caps !text-[0.65rem] text-ink underline decoration-gold underline-offset-4">
+                {c.phone}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
+
+      {g.gifts && (
+        <Reveal className="relative mt-14">
+          <WaxSeal className="absolute -left-1 -top-6 z-10 w-14 -rotate-6" />
+          <div className="paper mx-auto w-[86%] rotate-[3deg] px-7 py-9 text-center">
+            <h3 className="font-accent text-4xl leading-none text-rose">Gifts</h3>
+            <p className="caps mt-2 !text-[0.6rem] !leading-relaxed text-ink">{g.gifts.text}</p>
+          </div>
+          <Tassel className="absolute -bottom-12 right-[22%] w-5" />
+        </Reveal>
+      )}
     </section>
   );
 }

@@ -5,6 +5,7 @@ import type { WeddingConfig } from "@/config/types";
 import { getTimeLeft, type TimeLeft } from "@/lib/utils";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../ui/Reveal";
+import { Bouquet, Ribbon } from "../ui/Floral";
 
 export function Countdown({ wedding }: { wedding: WeddingConfig }) {
   // null until mounted so server and client markup match
@@ -25,30 +26,32 @@ export function Countdown({ wedding }: { wedding: WeddingConfig }) {
   ];
 
   return (
-    <section id="countdown" className="bg-blush/50 px-5 py-20 md:py-28">
-      <SectionHeading eyebrow="Counting down" title="Until We Say “I Do”" />
+    <section id="countdown" className="relative mx-auto max-w-[460px] overflow-hidden px-4 py-14">
+      <Bouquet className="pointer-events-none absolute -right-8 top-2 w-32" rotate={12} />
+      <SectionHeading caps="The" script="countdown" className="mb-6" />
       <Reveal>
         {left?.expired ? (
-          <p className="text-center font-serif text-3xl italic text-ink" role="status">
+          <p className="text-center font-serif text-2xl italic text-ink" role="status">
             Today is the day — or it has already happened. Thank you for celebrating with us!
           </p>
         ) : (
           <div
-            className="mx-auto grid max-w-3xl grid-cols-4 gap-2 sm:gap-6"
+            className="mx-auto grid max-w-xs grid-cols-4 text-center"
             role="timer"
             aria-label={left ? `${left.days} days, ${left.hours} hours, ${left.minutes} minutes, ${left.seconds} seconds remaining` : "Countdown loading"}
           >
             {units.map(([label, value]) => (
-              <div key={label} className="bg-ivory py-5 text-center shadow-sm ring-1 ring-gold/40 sm:py-8">
-                <div className="font-serif text-3xl tabular-nums text-ink sm:text-6xl" data-testid={`cd-${label.toLowerCase()}`}>
+              <div key={label}>
+                <div className="font-serif text-4xl tabular-nums text-ink" data-testid={`cd-${label.toLowerCase()}`}>
                   {value === undefined ? "--" : String(value).padStart(2, "0")}
                 </div>
-                <div className="mt-1 text-[10px] uppercase tracking-[0.25em] text-rose sm:text-xs">{label}</div>
+                <div className="caps !text-[0.55rem] text-rose">{label}</div>
               </div>
             ))}
           </div>
         )}
       </Reveal>
+      <Ribbon className="pointer-events-none mx-auto mt-6 w-72 opacity-90" />
     </section>
   );
 }

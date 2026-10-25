@@ -8,7 +8,7 @@ import { Hero } from "./sections/Hero";
 import { Countdown } from "./sections/Countdown";
 import { Details } from "./sections/Details";
 import { Gallery, Story } from "./sections/StoryGallery";
-import { GuestInfo } from "./sections/GuestInfo";
+import { GuestExtras, Timeline } from "./sections/GuestInfo";
 import { Rsvp } from "./sections/Rsvp";
 import { Closing } from "./sections/Closing";
 
@@ -47,7 +47,7 @@ export default function WeddingSite({ wedding }: { wedding: WeddingConfig }) {
   }, [overlay]);
 
   return (
-    <div style={style} className="min-h-screen bg-ivory text-ink">
+    <div style={style} className="min-h-screen overflow-x-clip text-ink">
       {overlay && (
         <Envelope
           wedding={wedding}
@@ -61,12 +61,13 @@ export default function WeddingSite({ wedding }: { wedding: WeddingConfig }) {
       {wedding.music && <MusicPlayer src={wedding.music.src} title={wedding.music.title} handle={music} />}
       <main aria-hidden={!entered && overlay ? true : undefined} inert={!entered && overlay ? true : undefined}>
         {sections.hero && <Hero wedding={wedding} />}
-        {sections.countdown && <Countdown wedding={wedding} />}
-        {sections.details && <Details wedding={wedding} />}
         {sections.story && <Story wedding={wedding} />}
-        {sections.gallery && <Gallery wedding={wedding} />}
-        {sections.guestInfo && <GuestInfo wedding={wedding} />}
         {sections.rsvp && <Rsvp wedding={wedding} />}
+        {sections.countdown && <Countdown wedding={wedding} />}
+        {sections.guestInfo && <Timeline wedding={wedding} />}
+        {sections.details && <Details wedding={wedding} />}
+        {sections.gallery && <Gallery wedding={wedding} />}
+        {sections.guestInfo && <GuestExtras wedding={wedding} />}
       </main>
       {sections.closing && <Closing wedding={wedding} />}
     </div>

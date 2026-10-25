@@ -22,19 +22,21 @@ export const aimanSarah: WeddingConfig = {
     closing: true,
   },
   theme: {
-    blush: "#f6dfdc",
-    rose: "#c98f8f",
-    ivory: "#fbf6ee",
-    gold: "#b8934e",
-    ink: "#4a3a3a",
-    fonts: { script: "Great Vibes", serif: "Cormorant Garamond" },
+    blush: "#f6e4ec",
+    rose: "#b48597",
+    ivory: "#fbf1f5",
+    gold: "#c2a15f",
+    ink: "#7a5f6c",
+    fonts: { script: "Pinyon Script", serif: "Cormorant Garamond" },
   },
-  intro: { eyebrow: "You are cordially invited", buttonLabel: "Open the Envelope" },
+  intro: { eyebrow: "You’ve received an invitation from", buttonLabel: "Open the Envelope" },
   invitation: {
     eyebrow: "Together with their families",
     message:
       "With hearts full of joy, we invite you to celebrate the beginning of our forever. Your presence would make our day complete.",
     hosts: "Mr. & Mrs. Hamdan · Mr. & Mrs. Rahman",
+    tagline: "Together is a beautiful place to be",
+    joinLine: "Join us for the beginning of forever",
   },
   images: {
     hero: { src: "/images/hero.svg", alt: "Aiman and Sarah portrait" },
@@ -96,7 +98,7 @@ export const aimanSarah: WeddingConfig = {
     dressCode: {
       title: "Garden Formal",
       text: "Soft, romantic tones. Please avoid white and bright red.",
-      palette: ["#f6dfdc", "#c98f8f", "#d9c7a3", "#8a9a7b"],
+      palette: ["#f1d5e0", "#b48597", "#d9c7a3", "#a9b394"],
     },
     faqs: [
       { q: "Can I bring a plus-one?", a: "Your invitation lists the number of seats reserved for you. Please RSVP with that number." },

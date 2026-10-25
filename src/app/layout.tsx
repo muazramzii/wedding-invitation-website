@@ -3,6 +3,7 @@ import {
   Allura,
   Cormorant_Garamond,
   Great_Vibes,
+  Italianno,
   Jost,
   Pinyon_Script,
   Playfair_Display,
@@ -19,17 +20,18 @@ const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant-garamond",
 });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair-display" });
-const jost = Jost({ subsets: ["latin"], variable: "--font-jost" });
+const italianno = Italianno({ weight: "400", subsets: ["latin"], variable: "--font-italianno" });
+const jost = Jost({ weight: ["300", "400", "500"], subsets: ["latin"], variable: "--font-jost" });
 
 export const metadata: Metadata = {
   title: "Wedding Invitation",
   description: "Premium interactive wedding invitation.",
 };
 
-export const viewport: Viewport = { themeColor: "#fbf6ee" };
+export const viewport: Viewport = { themeColor: "#f6e4ec" };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
-  const fonts = [greatVibes, pinyon, allura, cormorant, playfair, jost].map((f) => f.variable).join(" ");
+  const fonts = [greatVibes, pinyon, allura, italianno, cormorant, playfair, jost].map((f) => f.variable).join(" ");
   return (
     <html lang="en" className={fonts}>
       <body>{children}</body>

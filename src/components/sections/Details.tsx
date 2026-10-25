@@ -2,29 +2,29 @@
 
 import type { WeddingConfig, WeddingEvent } from "@/config/types";
 import { buildIcs, directionsUrl, formatLongDate, googleCalendarUrl } from "@/lib/utils";
-import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../ui/Reveal";
+import { Bouquet, Ribbon, Tassel, WaxSeal } from "../ui/Floral";
 
-function EventCard({ event, date, delay }: { event: WeddingEvent; date: string; delay: number }) {
+function EventOval({ event, date, side }: { event: WeddingEvent; date: string; side: "left" | "right" }) {
   return (
-    <Reveal delay={delay}>
-      <article className="h-full bg-ivory p-8 text-center ring-1 ring-gold/40 md:p-10">
-        <h3 className="font-script text-4xl text-rose">{event.title}</h3>
-        <p className="mt-3 font-serif text-xl">{date}</p>
-        <p className="text-sm uppercase tracking-[0.2em] text-gold">{event.time}</p>
-        <div className="mx-auto my-5 h-px w-12 bg-gold/50" />
-        <p className="font-serif text-2xl">{event.venue.name}</p>
-        <p className="mt-1 text-sm text-ink/80">{event.venue.address}</p>
-        {event.description && <p className="mt-3 font-serif italic text-ink/80">{event.description}</p>}
+    <Reveal className={`relative w-[84%] ${side === "right" ? "ml-auto" : "mr-auto"}`}>
+      <article className="paper shape-oval px-[14%] py-[22%] text-center">
+        <h3 className="font-accent text-4xl leading-none text-rose">{event.title}</h3>
+        <p className="caps mt-2 text-ink">{date}</p>
+        <p className="caps !leading-tight text-gold">{event.time}</p>
+        <p className="caps mt-4 !tracking-[0.3em] text-ink">{event.venue.name}</p>
+        <p className="caps !text-[0.6rem] !leading-snug text-ink/90">{event.venue.address}</p>
+        {event.description && <p className="mt-2 font-serif text-base italic leading-snug text-ink">{event.description}</p>}
         <a
           href={directionsUrl(event)}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-block rounded-full border border-gold px-6 py-2.5 text-xs uppercase tracking-[0.25em] transition hover:bg-gold hover:text-ivory"
+          className="caps mt-4 inline-block bg-ink/10 px-4 py-1 !text-[0.6rem] text-ink transition hover:bg-rose hover:text-ivory"
         >
-          Get Directions<span className="sr-only"> to {event.venue.name} (opens Google Maps)</span>
+          Get directions<span className="sr-only"> to {event.venue.name} (opens Google Maps)</span>
         </a>
       </article>
+      <Tassel className={`absolute -bottom-14 w-5 ${side === "right" ? "left-[30%]" : "right-[30%]"}`} />
     </Reveal>
   );
 }
@@ -42,31 +42,27 @@ export function Details({ wedding }: { wedding: WeddingConfig }) {
     URL.revokeObjectURL(url);
   };
 
+  const chip = "caps bg-ink/10 px-4 py-2 !text-[0.6rem] text-ink transition hover:bg-rose hover:text-ivory";
+
   return (
-    <section id="details" className="px-5 py-20 md:py-28">
-      <SectionHeading eyebrow="Save the date" title="Wedding Details" />
-      <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2 md:gap-10">
-        <EventCard event={wedding.ceremony} date={date} delay={0} />
-        <EventCard event={wedding.reception} date={date} delay={150} />
-      </div>
-      <Reveal className="mt-10 flex flex-wrap justify-center gap-3">
-        <a
-          href={googleCalendarUrl(wedding)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded-full bg-rose px-6 py-2.5 text-xs uppercase tracking-[0.25em] text-ivory transition hover:bg-ink"
-        >
-          Add to Google Calendar
-        </a>
-        <button
-          type="button"
-          onClick={downloadIcs}
-          className="rounded-full border border-rose px-6 py-2.5 text-xs uppercase tracking-[0.25em] text-rose transition hover:bg-rose hover:text-ivory"
-        >
-          Download .ics
-        </button>
+    <section id="details" className="relative mx-auto max-w-[460px] space-y-20 px-4 py-14">
+      <Bouquet className="pointer-events-none absolute -right-8 top-0 z-10 w-32" rotate={12} />
+      <Ribbon className="pointer-events-none absolute -left-8 top-1/3 w-56 rotate-[20deg] opacity-80" />
+      <EventOval event={wedding.ceremony} date={date} side="left" />
+      <EventOval event={wedding.reception} date={date} side="right" />
+      <Reveal className="relative pt-4 text-center">
+        <WaxSeal className="mx-auto mb-4 w-14" />
+        <p className="font-accent text-3xl text-rose">Save the date</p>
+        <div className="mt-3 flex flex-wrap justify-center gap-3">
+          <a href={googleCalendarUrl(wedding)} target="_blank" rel="noopener noreferrer" className={chip}>
+            Add to Google Calendar
+          </a>
+          <button type="button" onClick={downloadIcs} className={chip}>
+            Download .ics
+          </button>
+        </div>
+        <p className="caps mt-3 !text-[0.55rem] text-ink/70">All times in {wedding.timezoneLabel}</p>
       </Reveal>
-      <p className="mt-4 text-center text-xs text-ink/60">All times in {wedding.timezoneLabel}</p>
     </section>
   );
 }
