@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   description: "Premium interactive wedding invitation.",
 };
 
-export const viewport: Viewport = { themeColor: "#f6e4ec" };
+export const viewport: Viewport = { themeColor: "#ffffff" };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   const fonts = [greatVibes, pinyon, allura, italianno, cormorant, playfair, jost].map((f) => f.variable).join(" ");

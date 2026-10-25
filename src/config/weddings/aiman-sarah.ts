@@ -22,11 +22,11 @@ export const aimanSarah: WeddingConfig = {
     closing: true,
   },
   theme: {
-    blush: "#f6e4ec",
-    rose: "#b48597",
-    ivory: "#fbf1f5",
+    blush: "#f8f4f1",
+    rose: "#9d8883",
+    ivory: "#ffffff",
     gold: "#c2a15f",
-    ink: "#7a5f6c",
+    ink: "#2d2729",
     fonts: { script: "Pinyon Script", serif: "Cormorant Garamond" },
   },
   intro: { eyebrow: "You’ve received an invitation from", buttonLabel: "Open the Envelope" },
@@ -98,7 +98,7 @@ export const aimanSarah: WeddingConfig = {
     dressCode: {
       title: "Garden Formal",
       text: "Soft, romantic tones. Please avoid white and bright red.",
-      palette: ["#f1d5e0", "#b48597", "#d9c7a3", "#a9b394"],
+      palette: ["#ffffff", "#e8dcd2", "#c9b8a6", "#a9b394"],
     },
     faqs: [
       { q: "Can I bring a plus-one?", a: "Your invitation lists the number of seats reserved for you. Please RSVP with that number." },

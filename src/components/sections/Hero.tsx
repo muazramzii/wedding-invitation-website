@@ -18,7 +18,7 @@ export function Hero({ wedding }: { wedding: WeddingConfig }) {
         >
           {/* envelope lining + pocket */}
           <div
-            className="absolute left-[3%] top-0 h-[22%] w-[94%] drop-shadow-[0_6px_8px_rgba(120,80,100,0.25)]"
+            className="absolute left-[3%] top-0 h-[22%] w-[94%] drop-shadow-[0_6px_8px_rgba(70,60,55,0.2)]"
             style={{ clipPath: "polygon(0 0, 100% 0, 50% 100%)" }}
           >
             <LinerPattern className="h-full w-full" />

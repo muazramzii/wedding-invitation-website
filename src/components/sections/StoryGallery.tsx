@@ -82,7 +82,7 @@ export function Gallery({ wedding }: { wedding: WeddingConfig }) {
               aria-label={`Open photo: ${img.alt}`}
             >
               <div
-                className="bg-[#fffafc] p-[6%] pb-[14%] shadow-[0_10px_22px_-8px_rgba(110,70,90,0.5)]"
+                className="bg-[#fffafc] p-[6%] pb-[14%] shadow-[0_10px_22px_-8px_rgba(60,50,45,0.4)]"
                 style={{ transform: `rotate(${tilts[i % tilts.length]}deg)` }}
               >
                 <div className="relative aspect-[4/5] w-full overflow-hidden bg-blush">

@@ -91,14 +91,14 @@ export function Ribbon({ className = "", flip = false }: { className?: string; f
     <svg viewBox="0 0 320 120" className={className} style={flip ? { transform: "scaleX(-1)" } : undefined} aria-hidden="true" fill="none">
       <defs>
         <linearGradient id={id} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#f4dcd9" />
-          <stop offset="0.5" stopColor="#fff6f4" />
-          <stop offset="1" stopColor="#ecc9ca" />
+          <stop offset="0" stopColor="#f1e6dc" />
+          <stop offset="0.5" stopColor="#ffffff" />
+          <stop offset="1" stopColor="#e8d9cb" />
         </linearGradient>
       </defs>
       <path d="M5 80 C 50 10, 100 120, 150 60 S 250 10, 315 50" stroke={`url(#${id})`} strokeWidth="16" strokeLinecap="round" opacity="0.9" />
       <path d="M5 76 C 50 6, 100 116, 150 56 S 250 6, 315 46" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
-      <path d="M5 86 C 50 16, 100 126, 150 66 S 250 16, 315 56" stroke="#d9b0b3" strokeWidth="1" strokeLinecap="round" opacity="0.45" />
+      <path d="M5 86 C 50 16, 100 126, 150 66 S 250 16, 315 56" stroke="#d8c6b6" strokeWidth="1" strokeLinecap="round" opacity="0.45" />
     </svg>
   );
 }
@@ -133,27 +133,27 @@ export function WaxSeal({ className = "", label }: { className?: string; label?:
     <svg viewBox="0 0 80 80" className={className} aria-hidden="true">
       <defs>
         <radialGradient id={id} cx="0.35" cy="0.3" r="0.9">
-          <stop offset="0" stopColor="#fbeaf0" />
-          <stop offset="0.6" stopColor="#e6c9d5" />
-          <stop offset="1" stopColor="#cfa9b8" />
+          <stop offset="0" stopColor="#ffffff" />
+          <stop offset="0.6" stopColor="#ece4dd" />
+          <stop offset="1" stopColor="#d9cec6" />
         </radialGradient>
       </defs>
       <path
         d="M40 4 C50 2 58 8 64 14 C72 18 78 28 76 38 C80 48 74 60 66 66 C60 74 48 78 40 76 C30 80 20 74 14 66 C6 60 2 48 4 40 C0 30 6 20 14 14 C20 6 30 2 40 4 Z"
         fill={`url(#${id})`}
-        stroke="#c9a1b1"
+        stroke="#cdbfb5"
         strokeWidth="0.8"
       />
       <circle cx="40" cy="40" r="26" fill="none" stroke="#fff" strokeWidth="1" opacity="0.7" />
-      <circle cx="40" cy="40" r="24" fill="none" stroke="#c4a0ae" strokeWidth="0.6" opacity="0.7" />
+      <circle cx="40" cy="40" r="24" fill="none" stroke="#cdbfb5" strokeWidth="0.6" opacity="0.7" />
       {label ? (
-        <text x="40" y="47" textAnchor="middle" fontSize="20" fill="#a97f90" fontFamily="var(--font-pinyon-script), cursive">
+        <text x="40" y="47" textAnchor="middle" fontSize="20" fill="#9c8a82" fontFamily="var(--font-pinyon-script), cursive">
           {label}
         </text>
       ) : (
         <>
-          <path d="M40 54 C 38 44, 38 36, 40 26 C 42 36, 42 44, 40 54" fill="none" stroke="#b78e9f" strokeWidth="1.2" />
-          <path d="M40 46 C 34 44, 31 40, 31 35 M40 46 C 46 44, 49 40, 49 35 M40 38 C 35 36, 33 33, 33 29 M40 38 C 45 36, 47 33, 47 29" fill="none" stroke="#b78e9f" strokeWidth="1" />
+          <path d="M40 54 C 38 44, 38 36, 40 26 C 42 36, 42 44, 40 54" fill="none" stroke="#a8978e" strokeWidth="1.2" />
+          <path d="M40 46 C 34 44, 31 40, 31 35 M40 46 C 46 44, 49 40, 49 35 M40 38 C 35 36, 33 33, 33 29 M40 38 C 45 36, 47 33, 47 29" fill="none" stroke="#a8978e" strokeWidth="1" />
         </>
       )}
     </svg>
@@ -185,7 +185,7 @@ export function LinerPattern({ className = "" }: { className?: string }) {
           <circle cx="36" cy="38" r="3.5" fill="#f1e1cc" stroke="#d9c3aa" strokeWidth="0.5" />
         </pattern>
       </defs>
-      <rect width="300" height="150" fill="#f4e3e3" />
+      <rect width="300" height="150" fill="#f6f1ec" />
       <rect width="300" height="150" fill={`url(#${id})`} opacity="0.9" />
     </svg>
   );

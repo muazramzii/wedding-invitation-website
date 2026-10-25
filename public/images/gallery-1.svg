@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6dfdc"/><stop offset="1" stop-color="#e5b9b4"/></linearGradient>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4eee8"/><stop offset="1" stop-color="#e3d6c9"/></linearGradient>
 <filter id="b"><feGaussianBlur stdDeviation="50"/></filter></defs>
-<rect width="600" height="800" fill="url(#g)"/><g filter="url(#b)"><circle cx="222" cy="800" r="151" fill="#f6dfdc" opacity="0.55"/><circle cx="592" cy="382" r="227" fill="#e5b9b4" opacity="0.55"/><circle cx="360" cy="1" r="329" fill="#c98f8f" opacity="0.55"/><circle cx="4" cy="443" r="247" fill="#f6dfdc" opacity="0.55"/><circle cx="258" cy="796" r="150" fill="#e5b9b4" opacity="0.55"/></g>
-<path d="M300 736 C 210 560, 210 360, 300 256 C 390 360, 390 560, 300 736 Z" fill="#c98f8f" opacity="0.18"/>
-<circle cx="300" cy="208" r="54" fill="#c98f8f" opacity="0.2"/>
+<rect width="600" height="800" fill="url(#g)"/><g filter="url(#b)"><circle cx="222" cy="800" r="151" fill="#f4eee8" opacity="0.55"/><circle cx="592" cy="382" r="227" fill="#e3d6c9" opacity="0.55"/><circle cx="360" cy="1" r="329" fill="#b9a48f" opacity="0.55"/><circle cx="4" cy="443" r="247" fill="#f4eee8" opacity="0.55"/><circle cx="258" cy="796" r="150" fill="#e3d6c9" opacity="0.55"/></g>
+<path d="M300 736 C 210 560, 210 360, 300 256 C 390 360, 390 560, 300 736 Z" fill="#b9a48f" opacity="0.18"/>
+<circle cx="300" cy="208" r="54" fill="#b9a48f" opacity="0.2"/>
 </svg>
